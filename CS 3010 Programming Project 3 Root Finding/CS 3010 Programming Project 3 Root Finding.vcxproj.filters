@@ -20,7 +20,28 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Outputs.txt">
+    <Text Include="NewtonA.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="BisectionA.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="SecantA.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="FalseA.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="BisectionB.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="FalseB.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="NewtonB.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="SecantB.txt">
       <Filter>Source Files</Filter>
     </Text>
   </ItemGroup>

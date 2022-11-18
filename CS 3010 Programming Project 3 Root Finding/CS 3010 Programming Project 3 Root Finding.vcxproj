@@ -142,7 +142,14 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Outputs.txt" />
+    <Text Include="BisectionA.txt" />
+    <Text Include="BisectionB.txt" />
+    <Text Include="FalseA.txt" />
+    <Text Include="FalseB.txt" />
+    <Text Include="NewtonA.txt" />
+    <Text Include="NewtonB.txt" />
+    <Text Include="SecantA.txt" />
+    <Text Include="SecantB.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
