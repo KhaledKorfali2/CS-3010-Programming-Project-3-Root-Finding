@@ -35,6 +35,7 @@ int main()
 	cout << fixed;
 	cout << setprecision(6);
 
+	//Indicate Program Has Started
 	cout << "Program is Running" << endl;
 	int equationNum = 0;
 	double a, b;
@@ -59,10 +60,13 @@ int main()
 	cout << "Please enter a value for b: " << endl;
 	cin >> b;
 
+	//User wants to use f(x)=2x^{3}-11.7x^{2}+17.7x-5 as their equation
 	if (equationNum == 1)
 	{
+		//Makes sure that user enters valid a and b values
 		while (calcFunctionA(a) * calcFunctionA(b) >= 0)
 		{
+			//Output error message and ask for new values for a and b
 			//system("clear");
 			cout << "Error: Please enter diffrent values for a and b" << endl;
 			cout << "Please enter a value for a: " << endl;
@@ -71,15 +75,19 @@ int main()
 			cout << "Please enter a value for b: " << endl;
 			cin >> b;
 		}
+		//Finds roots using 4 methods
 		Bisection(calcFunctionA, a, b, equationNum);
 		NewtonRaphson(calcFunctionA, calcDerivFuncA, a, equationNum);
 		Secant(calcFunctionA, a, b, equationNum);
 		FalsePosition(calcFunctionA, a, b, equationNum);
 	}
+	//User wants to use f(x)=x+10-xcosh(50/x) as their equation
 	else
 	{
+		//Makes sure that user enters valid a and b values
 		while (calcFunctionB(a) * calcFunctionB(b) >= 0)
 		{
+			//Output error message and ask for new values for a and b
 			cout << "Error: Please enter diffrent values for a and b" << endl;
 			cout << "Please enter a value for a: " << endl;
 			cin >> a;
@@ -87,7 +95,7 @@ int main()
 			cout << "Please enter a value for b: " << endl;
 			cin >> b;
 		}
-
+		//Finds roots using 4 methods
 		Bisection(calcFunctionB, a, b, equationNum);
 		NewtonRaphson(calcFunctionB, calcDerivFuncB, a, equationNum);
 		Secant(calcFunctionB, a, b, equationNum);
@@ -95,11 +103,14 @@ int main()
 
 	}
 
+	//Indicate Program Has Ended
 	cout << "Program Has Reached Its End";
 }
 
+//Finds a root of a function using values for a and b through Bisection Method
 void Bisection(double (*func)(double), double a, double b, int equationNum)
 {
+	//Checks which equation user wanted to decide output files
 	string outputFile;
 	if (equationNum == 1)
 	{
@@ -118,6 +129,7 @@ void Bisection(double (*func)(double), double a, double b, int equationNum)
 	fa = func(a);
 	fb = func(b);
 	c = 0;
+	//Checks if values for a and b are valid, exits out of program if not
 	if (fa * fb >= 0)
 	{
 		cout << a << " " << b << " " << fa << " " << fb << endl;
@@ -135,6 +147,7 @@ void Bisection(double (*func)(double), double a, double b, int equationNum)
 		relApproxErr.push_back(REerror);
 		fc = func(c);
 		cout << "n: " << n << " c: " << c << " fc: " << fc << " REerror: " << REerror << endl;
+		//Checks whether Relative Approxomate Error is less than toleratable error
 		//Originally abs(error) < EBSOL
 		if (abs(REerror) < EBSOL)
 		{
@@ -155,8 +168,10 @@ void Bisection(double (*func)(double), double a, double b, int equationNum)
 	}
 }
 
+//Finds a root of a function using the value for a through Newton Method
 void NewtonRaphson(double (*func)(double), double (*funcPrime)(double), double x, int equationNum)
 {
+	//Checks which equation user wanted to decide output files
 	string outputFile;
 	if (equationNum == 1)
 	{
@@ -179,6 +194,7 @@ void NewtonRaphson(double (*func)(double), double (*funcPrime)(double), double x
 	for (int n = 1; n < NMAX;n++)
 	{
 		fp = funcPrime(x);
+		//Checks if values for a and b are valid, exits out of program if not
 		if (abs(fp) < EBSOL)
 		{
 			cout << "Small Derivative" << endl;
@@ -191,6 +207,7 @@ void NewtonRaphson(double (*func)(double), double (*funcPrime)(double), double x
 		relApproxErr.push_back(REerror);
 		fx = func(x);
 		cout << "n: " << n << " x: " << x << " fx: " << fx << " REerror: " << REerror << endl;
+		//Checks whether Relative Approxomate Error is less than toleratable error
 		//originally abs(d) < EBSOL
 		if (abs(REerror) < EBSOL)
 		{
@@ -202,8 +219,10 @@ void NewtonRaphson(double (*func)(double), double (*funcPrime)(double), double x
 	
 }
 
+//Finds a root of a function using values for a and b through Secant Method
 void Secant(double (*func)(double), double a, double b, int equationNum)
 {
+	//Checks which equation user wanted to decide output files
 	string outputFile;
 	if (equationNum == 1)
 	{
@@ -250,6 +269,7 @@ void Secant(double (*func)(double), double a, double b, int equationNum)
 		b = a;
 		fb = fa;
 		d *= fa;
+		//Checks whether Relative Approxomate Error is less than toleratable error
 		//Originally abs(d) < EBSOL
 		if (abs(REerror) < EBSOL)
 		{
@@ -267,8 +287,10 @@ void Secant(double (*func)(double), double a, double b, int equationNum)
 	}
 }
 
+//Finds a root of a function using values for a and b through False-Position Method
 void FalsePosition(double (*func)(double), double a, double b, int equationNum)
 {
+	//Checks which equation user wanted to decide output files
 	string outputFile;
 	if (equationNum == 1)
 	{
@@ -287,6 +309,7 @@ void FalsePosition(double (*func)(double), double a, double b, int equationNum)
 	fa = func(a);
 	fb = func(b);
 	c = 0;
+	//Checks if values for a and b are valid, exits out of program if not
 	if (fa * fb >= 0)
 	{
 		cout << a << " " << b << " " << fa << " " << fb << endl;
@@ -303,6 +326,7 @@ void FalsePosition(double (*func)(double), double a, double b, int equationNum)
 		relApproxErr.push_back(REerror);
 		fc = func(c);
 		cout << "n: " << n << " c: " << c << " fc: " << fc << " REerror: " << REerror << endl;
+		//Checks whether Relative Approxomate Error is less than toleratable error
 		//Originally abs(error) < EBSOL
 		if (abs(REerror) < EBSOL)
 		{
